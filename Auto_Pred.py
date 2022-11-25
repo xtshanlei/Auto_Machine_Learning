@@ -47,7 +47,7 @@ class AutoPred:
     self.hf_test = h2o.H2OFrame(df_test)
     print('{} train and {} test data have been splited!'.format(len(self.hf_train),len(self.hf_test)))
     return self.hf,self.hf_train,self.hf_test
-  def train(self,save_path):
+  def train(self):
     '''
     y: response variable
     hf_train: dataframe for training
@@ -63,6 +63,5 @@ class AutoPred:
         training_frame = self.hf_train,
         leaderboard_frame=self.hf_test)
     self.leader_model = self.aml.leader
-    self.leader_model.save_mojo(save_path)
     st.write(self.aml.leaderboard)
     return self.leader_model
