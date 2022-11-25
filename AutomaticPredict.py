@@ -10,6 +10,7 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)
     st.write(dataframe)
+    st.header('2. Preprocessing')
     response = st.selectbox('Please select the response or dependent variable:',dataframe.columns)
     if response:
         cat_columns =st.multiselect('Please select the categorical columns',dataframe.columns)
@@ -18,4 +19,5 @@ if uploaded_file is not None:
             if outlier_columns:
                 automl = AutoPred(dataframe,response,outlier_columns,cat_columns)
                 automl.remove_outlier_for_all_columns()
+                st.write('The data without outliers are shown below:')
                 st.write(automl.clean_df)
