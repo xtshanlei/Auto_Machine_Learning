@@ -22,7 +22,7 @@ class AutoPred:
     df_no_outlier = df_no_outlier.reset_index(drop=True)
     return df_no_outlier
   def remove_outlier_for_all_columns(self):
-    import streamlit as st  
+    import streamlit as st
     for column in self.outlier_columns:
       self.clean_df = self.remove_outlier(column)
     st.write('All outliers are removed!')
@@ -56,11 +56,13 @@ class AutoPred:
 
     '''
     from h2o.automl import H2OAutoML
+    import streamlit as st
+    st.write('test')
     self.aml = H2OAutoML()
     self.aml.train(y = self.response,
         training_frame = self.hf_train,
         leaderboard_frame=self.hf_test)
     self.leader_model = aml.leader
     self.leader_model.save_mojo(save_path)
-    print(self.aml.leaderboard)
+    st.write(self.aml.leaderboard)
     return self.leader_model
