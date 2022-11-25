@@ -21,3 +21,9 @@ if uploaded_file is not None:
                 automl.remove_outlier_for_all_columns()
                 st.write('The data without outliers are shown below:')
                 st.write(automl.clean_df)
+                st.header('3. Train test split')
+                train_size = st.slider('The percentage of training set?',0,1,0.1)
+                if st.button('Split the dataset!'):
+                    automl.train_test_data(train_size)
+                    st.write('The dataset has been split into {} training and {} test samples'.format(len(automl.hf_train),len(automl.hf_test)))
+                
