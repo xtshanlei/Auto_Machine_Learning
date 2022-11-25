@@ -6,6 +6,7 @@ class AutoPred:
     self.outlier_columns = outlier_columns
     self.cat_columns = cat_columns
   def remove_outlier(self, outlier_column):
+    import numpy as np
     Q1 = np.percentile(self.raw_df[outlier_column], 25,
                     interpolation = 'midpoint')
 
