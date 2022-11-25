@@ -26,7 +26,7 @@ if uploaded_file is not None:
                 if st.button('Split the dataset!'):
                     automl.train_test_data(train_size)
                     st.write('The dataset has been split into {} training and {} test samples'.format(len(automl.hf_train),len(automl.hf_test)))
-                    st.header('4. Training')
+                    st.header('5. Training')
                     save_path = '/h2o.zip'
                     st.write(save_path)
                     leader_model = automl.train(save_path)
