@@ -18,14 +18,15 @@ if uploaded_file is not None:
             outlier_columns=st.multiselect('Please select the columns that you want to remove outliers',dataframe.columns)
             if outlier_columns:
                 automl = AutoPred(dataframe,response,outlier_columns,cat_columns)
-                automl.remove_outlier_for_all_columns()
-                st.write('The data without outliers are shown below:')
-                st.write(automl.clean_df)
-                st.header('3. Train test split')
-                train_size = st.slider('The percentage of training set?',0.0,1.0,0.1)
-                if st.button('Split the dataset!'):
-                    automl.train_test_data(train_size)
-                    st.write('The dataset has been split into {} training and {} test samples'.format(len(automl.hf_train),len(automl.hf_test)))
-                    st.header('5. Training')
-                    leader_model = automl.train()
-                    st.download_button('Click to download the trained model', leader_model)
+                if st.button('Remove outliers'):
+                    automl.remove_outlier_for_all_columns()
+                    st.write('The data without outliers are shown below:')
+                    st.write(automl.clean_df)
+                    st.header('3. Train test split')
+                    train_size = st.slider('The percentage of training set?',0.0,1.0,0.1)
+                    if st.button('Split the dataset!'):
+                        automl.train_test_data(train_size)
+                        st.write('The dataset has been split into {} training and {} test samples'.format(len(automl.hf_train),len(automl.hf_test)))
+                        st.header('5. Training')
+                        leader_model = automl.train()
+                        st.download_button('Click to download the trained model', leader_model)

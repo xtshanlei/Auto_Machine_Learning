@@ -57,11 +57,11 @@ class AutoPred:
     '''
     from h2o.automl import H2OAutoML
     import streamlit as st
-    st.write('test')
-    self.aml = H2OAutoML(max_runtime_secs = 10)
+    self.aml = H2OAutoML(max_runtime_secs = 300)
     self.aml.train(y = self.response,
         training_frame = self.hf_train,
         leaderboard_frame=self.hf_test)
     self.leader_model = self.aml.leader
+    st.write('Trainning completed! Please see the leader board below!')
     st.write(self.aml.leaderboard)
     return self.leader_model
