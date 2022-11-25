@@ -13,7 +13,7 @@ if uploaded_file is not None:
     st.write(dataframe.columns)
     response = st.selectbox('Please select the response or dependent variable:',dataframe.columns)
     outlier_columns=st.multiselect('Please select the columns that you want to remove outliers',dataframe.columns)
-    cat_columns =multiselect('Please select the categorical columns',dataframe.columns)
+    cat_columns =st.multiselect('Please select the categorical columns',dataframe.columns)
     automl = AutoPred(raw_df,response,outlier_columns,cat_columns)
     automl.remove_outlier_for_all_columns()
     st.write(automl.clean_df)
