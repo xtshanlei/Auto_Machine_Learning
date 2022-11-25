@@ -58,7 +58,7 @@ class AutoPred:
     from h2o.automl import H2OAutoML
     import streamlit as st
     st.write('test')
-    self.aml = H2OAutoML()
+    self.aml = H2OAutoML(max_runtime_secs = 10)
     self.aml.train(y = self.response,
         training_frame = self.hf_train,
         leaderboard_frame=self.hf_test)
