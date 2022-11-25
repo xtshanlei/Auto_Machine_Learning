@@ -62,7 +62,7 @@ class AutoPred:
     self.aml.train(y = self.response,
         training_frame = self.hf_train,
         leaderboard_frame=self.hf_test)
-    self.leader_model = aml.leader
+    self.leader_model = self.aml.leader
     self.leader_model.save_mojo(save_path)
     st.write(self.aml.leaderboard)
     return self.leader_model
