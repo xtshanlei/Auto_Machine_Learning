@@ -29,5 +29,6 @@ if uploaded_file is not None:
                     st.header('4. Training')
                     if st.button('Train the model!'):
                         save_path = '/h2o.zip'
+                        st.write(save_path)
                         leader_model = automl.train(save_path)
                         st.download_button('Click to download the trained model', leader_model)
