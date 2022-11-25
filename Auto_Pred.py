@@ -7,7 +7,7 @@ class AutoPred:
     self.cat_columns = cat_columns
   def remove_outlier(self, outlier_column):
     import numpy as np
-    import streamlit as st
+
     Q1 = np.percentile(self.raw_df[outlier_column], 25,
                     interpolation = 'midpoint')
 
@@ -22,6 +22,7 @@ class AutoPred:
     df_no_outlier = df_no_outlier.reset_index(drop=True)
     return df_no_outlier
   def remove_outlier_for_all_columns(self):
+    import streamlit as st  
     for column in self.outlier_columns:
       self.clean_df = self.remove_outlier(column)
     st.write('All outliers are removed!')
