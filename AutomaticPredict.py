@@ -28,6 +28,6 @@ if uploaded_file is not None:
                     st.write('The dataset has been split into {} training and {} test samples'.format(len(automl.hf_train),len(automl.hf_test)))
                     st.header('4. Training')
                     if st.button('Train the model!'):
-                        save_path = 'h2o.zip'
+                        save_path = '/h2o.zip'
                         leader_model = automl.train(save_path)
                         st.download_button('Click to download the trained model', leader_model)
