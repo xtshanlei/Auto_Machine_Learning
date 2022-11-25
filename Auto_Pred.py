@@ -7,13 +7,13 @@ class AutoPred:
     self.cat_columns = cat_columns
   def remove_outlier(self, outlier_column):
     import numpy as np
+    import streamlit as st
     Q1 = np.percentile(self.raw_df[outlier_column], 25,
                     interpolation = 'midpoint')
 
     Q3 = np.percentile(self.raw_df[outlier_column], 75,
                     interpolation = 'midpoint')
     IQR = Q3 - Q1
-    print("The IQR for {} is {}".format(outlier_column,round(IQR,4)))
     upper = np.where(self.raw_df[outlier_column] >= (Q3+1.5*IQR))
     # Lower bound
     lower = np.where(self.raw_df[outlier_column] <= (Q1-1.5*IQR))
@@ -24,7 +24,7 @@ class AutoPred:
   def remove_outlier_for_all_columns(self):
     for column in self.outlier_columns:
       self.clean_df = self.remove_outlier(column)
-    print('All outliers are removed!')
+    st.write('All outliers are removed!')
     return self.clean_df
   def train_test_data(self,train_size):
     import h2o
